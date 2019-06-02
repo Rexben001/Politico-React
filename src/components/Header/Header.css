@@ -1,0 +1,24 @@
+.Header {
+  background-color: rgb(1, 98, 1);
+  display: flex;
+  justify-content: flex-end;
+  align-content: space-between;
+  position: fixed;
+  width: 100%;
+}
+NavLink {
+  color: white;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  padding: 1rem;
+  margin: .5rem;
+}
+a:hover{
+  background-color: white;
+  color: green;
+  border-radius: 5px;
+  box-shadow: 0 2px 2px rgb(27, 27, 27);
+}

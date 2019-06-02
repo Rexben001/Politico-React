@@ -1,0 +1,48 @@
+.login{
+    margin: 0 auto;
+    width: 500px;
+    padding-top: 5rem;
+    min-height: 85vh;
+}
+
+.login h3{
+    color: blue;
+    font-size: 1.5rem;
+}
+
+form{
+    padding: 1rem;
+    font-size: 1rem;
+    background-color: rgb(192, 191, 191);
+    display: flex;
+    flex-direction: column;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 2px black;
+}
+
+label{
+display: block;
+align-self: flex-start;
+margin: 1rem 0;
+font-size: 1.3rem;
+}
+
+input{
+    padding: 1rem;
+    font-size: 1.2rem;
+    border-radius: .5rem;
+    background-color: rgb(144, 144, 144);
+    color: white;
+    outline: none;
+}
+
+.submit{
+    color: white;
+    background-color: blue;
+    padding: 1rem;
+    margin: 1rem auto;
+    font-size: 1.2rem;
+    border-radius: .5rem;
+    cursor: pointer;
+}
