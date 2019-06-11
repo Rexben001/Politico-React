@@ -4,9 +4,13 @@ export {
     authFail,
     auth,
     logoutAuth,
-    authCheckState
+    authCheckState,
 } from './auth';
 
 export {
     petitionAuth
 } from './petition';
+
+export {
+    voteAuth
+} from './vote';

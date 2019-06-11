@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import "./Header.css";
 
@@ -10,7 +10,9 @@ class Header extends Component {
     if (props) {
       return (
         <>
-    {props===true? <Link to="/petition">Petition</Link>: <Redirect to='/login'/> }
+          <Link to="/petition">Petition</Link>
+          <Link to="/vote">Vote</Link>
+          <Link to="/profile">My Profile</Link>
           <Link to="/login" onClick={() => this.props.onLogout()}>
             Logout
           </Link>

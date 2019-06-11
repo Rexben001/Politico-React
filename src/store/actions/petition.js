@@ -1,19 +1,19 @@
 import axios from "axios";
 import * as actionTypes from "./actionTypes";
 
-export const petition = () => {
+const petition = () => {
   return {
     type: actionTypes.PETITION
   };
 };
 
 export const petitionAuth = (office, evidence, details, token) => {
-    console.log(token);
+  console.log(token);
   return dispatch => {
     dispatch(petition());
     const petitionDetails = {
-        office: Number(office),
-        evidence,
+      office: Number(office),
+      evidence,
       bodyValue: details
     };
     const headers = {
@@ -23,11 +23,10 @@ export const petitionAuth = (office, evidence, details, token) => {
       .post(
         `https://politico-voting.herokuapp.com/api/v1/petitions`,
         petitionDetails,
-        {headers}
+        { headers }
       )
       .then(response => {
-        console.log(response);
-        // window.location.href = "/";
+        window.location.href = "/profile";
       })
       .catch(e => {
         console.log(e);

@@ -13,11 +13,21 @@ class Petition extends Component {
   };
 
   render() {
-      const { office, details, evidence } = this.state;
+    const { office, details, evidence } = this.state;
     return (
       <div className="login">
         <h3>Petition</h3>
-        <form onSubmit={event => this.props.onPetition(event, office, evidence, details, this.props.token)}>
+        <form
+          onSubmit={event =>
+            this.props.onPetition(
+              event,
+              office,
+              evidence,
+              details,
+              this.props.token
+            )
+          }
+        >
           <label>Office</label>
           <input
             type="text"
@@ -53,22 +63,22 @@ class Petition extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        token: state.auth.token
-    }
-}
+const mapStateToProps = state => {
+return {
+    token: state.auth.token
+  };
+};
 
 const mapDispatchToProps = dispatch => {
-    return {
-      onPetition: (event, office, evidence, details, token) => {
-        event.preventDefault();
-        return dispatch(actions.petitionAuth(office, evidence, details, token));
-      }
-    };
+  return {
+    onPetition: (event, office, evidence, details, token) => {
+      event.preventDefault();
+      return dispatch(actions.petitionAuth(office, evidence, details, token));
+    }
   };
-  
-  export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(Petition);
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Petition);

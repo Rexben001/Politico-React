@@ -9,7 +9,7 @@ export const authStart = () => {
 export const authSucess = (token, login) => {
   return {
     type: actionTypes.AUTH_SUCCESS,
-      idToken: token,
+    idToken: token,
     login: login
   };
 };
@@ -46,8 +46,8 @@ export const auth = (email, password) => {
 };
 
 export const logout = () => {
-    localStorage.removeItem('token');
-    localStorage.setItem('login', false);
+  localStorage.removeItem("token");
+  localStorage.setItem("login", false);
   return {
     type: actionTypes.AUTH_LOGOUT
   };
@@ -60,16 +60,13 @@ export const logoutAuth = () => {
 };
 
 export const authCheckState = () => {
-    return dispatch => {
-        const token = localStorage.getItem('token');
-        if (!token)
-        {
-            dispatch(logout())
-        } else
-        {
-            const login = localStorage.getItem('login');
-            dispatch(authSucess( token, login))
-        }
-        
+  return dispatch => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      dispatch(logout());
+    } else {
+      const login = localStorage.getItem("login");
+      dispatch(authSucess(token, login));
     }
-}
+  };
+};
