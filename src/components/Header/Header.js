@@ -4,12 +4,14 @@ import { connect } from "react-redux";
 import "./Header.css";
 
 import * as actions from "../../store/actions/index";
+import { stat } from "fs";
 
 class Header extends Component {
   checkStateLogin = props => {
     if (props) {
       return (
         <>
+          {this.props.admin ? <Link to="/admin">Admin</Link> : null}
           <Link to="/petition">Petition</Link>
           <Link to="/vote">Vote</Link>
           <Link to="/profile">My Profile</Link>
@@ -38,7 +40,8 @@ class Header extends Component {
 
 const mapStateToProps = state => {
   return {
-    login: state.auth.login
+    login: state.auth.login,
+    admin: state.auth.admin
   };
 };
 const mapDispatchToProps = dispatch => {

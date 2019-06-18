@@ -5,7 +5,8 @@ const initialStae = {
   userId: null,
   error: null,
   isLoading: null,
-  login: false
+  login: !!localStorage.getItem("token"),
+  admin: false
 };
 
 const reducer = (state = initialStae, action) => {
@@ -24,7 +25,8 @@ const reducer = (state = initialStae, action) => {
         userId: action.userId,
         error: null,
         isLoading: false,
-        login: true
+        login: true,
+        admin: action.admin
       };
     case actionTypes.AUTH_FAIL:
       return {
@@ -39,7 +41,8 @@ const reducer = (state = initialStae, action) => {
         ...state,
         token: null,
         userId: null,
-        login: false
+        login: false,
+        admin: null
       };
     default:
       return state;

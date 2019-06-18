@@ -6,11 +6,12 @@ export const authStart = () => {
     type: actionTypes.AUTH_START
   };
 };
-export const authSucess = (token, login) => {
+export const authSucess = (token, login, admin) => {
   return {
     type: actionTypes.AUTH_SUCCESS,
     idToken: token,
-    login: login
+    login: login,
+    admin: admin
   };
 };
 export const authFail = error => {
@@ -26,7 +27,6 @@ export const auth = (email, password) => {
       email,
       password
     };
-    console.log(loginDetails);
     axios
       .post(
         `https://politico-voting.herokuapp.com/api/v1/auth/login`,
@@ -35,6 +35,7 @@ export const auth = (email, password) => {
       .then(response => {
         console.log(response);
         window.localStorage.setItem("token", response.data.data[0].token);
+        window.localStorage.setItem('admin',response.data.data[0].user.is_admin)
         window.location.href = "/";
         dispatch(authSucess(response.data));
       })
@@ -47,6 +48,7 @@ export const auth = (email, password) => {
 
 export const logout = () => {
   localStorage.removeItem("token");
+  localStorage.removeItem("admin");
   localStorage.setItem("login", false);
   return {
     type: actionTypes.AUTH_LOGOUT
@@ -66,7 +68,8 @@ export const authCheckState = () => {
       dispatch(logout());
     } else {
       const login = localStorage.getItem("login");
-      dispatch(authSucess(token, login));
+      const admin = localStorage.getItem("admin");
+      dispatch(authSucess(token, login, admin));
     }
   };
 };

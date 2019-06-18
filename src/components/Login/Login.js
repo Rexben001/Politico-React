@@ -20,7 +20,7 @@ class Login extends Component {
     return (
       <div className="login">
         <h3>Login</h3>
-        {this.props.isLoading === true ? (
+        {this.props.isLoading ? (
           <Spinner />
         ) : (
           <form onSubmit={event => this.props.onAuth(event, email, password)}>

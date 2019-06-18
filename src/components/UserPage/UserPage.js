@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import propTypes from "prop-types";
+import { Redirect } from 'react-router-dom'; 
 import "./Userpage.css";
+import Spinner from "../Spinner/Spinner";
 
 class UserPage extends Component {
   constructor() {
@@ -10,7 +12,8 @@ class UserPage extends Component {
     this.state = {
       votedFor: [],
       profile: {},
-      totalVotes: null
+      totalVotes: null,
+      isLoading: true
     };
   }
   componentDidMount() {
@@ -35,7 +38,9 @@ class UserPage extends Component {
       })
       .catch(e => {
         console.log(e);
-      });
+      })
+    .finally(()=> this.setState({isLoading: false}))
+  
   };
 
   getUserProfile = URL => {
@@ -55,8 +60,7 @@ class UserPage extends Component {
   };
   render() {
     const { username, email, passporturl } = this.state.profile;
-    console.log(this.state.totalVotes);
-    return (
+    return this.props.login ? ( this.state.isLoading? <Spinner className='mtop'/>:
       <div className="UserPage">
         <div className="profile">
           <img src={passporturl} alt="profile" />
@@ -88,12 +92,14 @@ class UserPage extends Component {
           </table>
         </div>
       </div>
-    );
+    ) : <Redirect to='/' />;
   }
 }
 const mapStateToProps = state => {
   return {
-    token: state.auth.token
+    token: state.auth.token,
+    login: state.auth.login,
+    admin: state.auth.admin
   };
 };
 

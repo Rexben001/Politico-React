@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 import * as actions from "../../store/actions/index";
+import Spinner from "../Spinner/Spinner";
 
 class Petition extends Component {
   state = {};
@@ -14,7 +16,10 @@ class Petition extends Component {
 
   render() {
     const { office, details, evidence } = this.state;
-    return (
+    console.log(this.props.isLoading);
+    return this.props.isLoading ? (
+      <Spinner />
+    ) : this.props.login ? (
       <div className="login">
         <h3>Petition</h3>
         <form
@@ -24,7 +29,8 @@ class Petition extends Component {
               office,
               evidence,
               details,
-              this.props.token
+              this.props.token,
+              this.props.history
             )
           }
         >
@@ -59,21 +65,28 @@ class Petition extends Component {
           </button>
         </form>
       </div>
+    ) : (
+      <Redirect to="/" />
     );
   }
 }
 
 const mapStateToProps = state => {
-return {
-    token: state.auth.token
+  return {
+    token: state.auth.token,
+    isLoading: state.auth.isLoading,
+    login: state.auth.login
+
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onPetition: (event, office, evidence, details, token) => {
+    onPetition: (event, office, evidence, details, token, history) => {
       event.preventDefault();
-      return dispatch(actions.petitionAuth(office, evidence, details, token));
+      return dispatch(
+        actions.petitionAuth(office, evidence, details, token, history)
+      );
     }
   };
 };

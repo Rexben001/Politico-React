@@ -13,9 +13,10 @@ export const VoteStyle = styled.div`
     color: white;
   }
 
-  .sideDrawer > p {
+  a {
     font-size: 1.2rem;
     padding: 1rem;
+    display: block;
   }
 
   .main-content {
@@ -29,19 +30,19 @@ export const VoteStyle = styled.div`
       width: 100%;
       box-sizing: border-box;
       display: flex;
-        flex-wrap: nowrap;
-        justify-content: space-evenly;
+      flex-wrap: nowrap;
+      justify-content: space-evenly;
       .votes-div {
         box-sizing: border-box;
         width: 25%;
         min-height: 75px;
         box-shadow: 0 2px 2px red;
         cursor: pointer;
-        
+
         img {
           width: 100%;
           height: 60%;
-          margin-bottom: .5rem;
+          margin-bottom: 0.5rem;
         }
         p {
           padding: 0;
@@ -60,5 +61,38 @@ export const VoteStyle = styled.div`
         }
       }
     }
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 90%;
+    margin: 0 auto;
+  }
+  th {
+    color: green;
+  }
+  th,
+  td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  tr:nth-child(odd) {
+    color: black;
+  }
+
+  tr:nth-child(even) {
+    color: black;
+  }
+
+  tr:hover {
+    background-color: rgba(15, 14, 14, 0.014);
+  }
+  table tr td img {
+    height: 30px;
+    width: 50px;
   }
 `;

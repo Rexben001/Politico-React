@@ -7,8 +7,7 @@ const petition = () => {
   };
 };
 
-export const petitionAuth = (office, evidence, details, token) => {
-  console.log(token);
+export const petitionAuth = (office, evidence, details, token, history) => {
   return dispatch => {
     dispatch(petition());
     const petitionDetails = {
@@ -26,7 +25,7 @@ export const petitionAuth = (office, evidence, details, token) => {
         { headers }
       )
       .then(response => {
-        window.location.href = "/profile";
+         history.push("/profile");
       })
       .catch(e => {
         console.log(e);
